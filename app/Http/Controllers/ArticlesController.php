@@ -5,6 +5,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 use App\Http\Requests\CreateArticleRequest;
+use Illumniate\HttpResponse;
 //use Illuminate\Http\Request;
 //use Request;
 
@@ -19,8 +20,8 @@ class ArticlesController extends Controller {
 	}
 
 	public function show($id) {
+//dd('you are in show');
 		$article = NewArticle::findOrFail($id);
-		dd($article->published_at);
 		return view ('articles.show', compact('article'));
 	}
 

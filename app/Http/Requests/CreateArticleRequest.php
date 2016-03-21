@@ -2,6 +2,8 @@
 
 use App\Http\Requests\Request;
 use App\Http\Controllers;
+use App\Http\Requests\CreateArticleRequest;
+
 class CreateArticleRequest extends Request {
 
 	/**
@@ -22,11 +24,12 @@ class CreateArticleRequest extends Request {
 	 */
 	public function rules()
 	{
-		return [
+		return  [
 			'title' => 'required|min:3',
 			'body' => 'required',
 			'published_at' => 'required|date'
 		];
+
 	}
 
 }
