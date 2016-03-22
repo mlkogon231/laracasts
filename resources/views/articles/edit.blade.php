@@ -1,12 +1,12 @@
 @extends('app')
 
-@section('content');
 
-	<h1>Write a New Article</h1>
-<hr />
+@section('content')
+	<h1>
+		Edit: {!! $article->title !!}
+	</h1>
 
-
-{!! Form::open(['url' => 'articles']) !!}
+{!! Form::model($article, ['method' => 'PATCH', 'action' => ['ArticlesController@update', $article->id]]) !!}
   <div class="form-group">
      {!! Form::label('title', 'Title: ') !!}
      {!! Form::text('title', null, ['class' => 'form-control']) !!}
@@ -28,8 +28,8 @@
 
 {!! Form::close() !!}
 
-@include('errors.list')
 
+@include('errors.list')
 
 
 @stop
