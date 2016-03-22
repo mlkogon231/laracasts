@@ -12,6 +12,8 @@ use Illuminate\Http\Request;
 class ArticlesController extends Controller {
 
 	public function index() {
+
+//	return \Auth::user()->name;
 // query scope on next line
 		$articles = NewArticle::latest('published_at')->published()->get();
 //		$articles = NewArticle::latest('published_at')->where('published_at', '<=', Carbon::now())->get();
