@@ -7,7 +7,8 @@ class NewArticle extends Model {
 	protected $fillable = [
     		'title',
 		'body',
-		'published_at'
+		'published_at',
+		'user_id' // temporary
         ];
 
 	protected $dates = ['published_at'];
@@ -24,4 +25,17 @@ class NewArticle extends Model {
 	public function setPublishedAtAttribute($date){
 		$this->attributes['published_at'] = Carbon::parse($date);
         }
+
+	/*
+
+		An article is owned by a user
+		
+		@return \Illuminate\Database\Eloquent\Relations\BelongsTo
+
+	*/
+
+	public function user() {
+		return $this->belongsTo('App\User');
+	}
+
 }
