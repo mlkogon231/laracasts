@@ -4,7 +4,7 @@ use App\NewArticle;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
-use App\Http\Requests\CreateArticleRequest;
+use App\Http\Requests\ArticleRequest;
 use Illumniate\HttpResponse;
 use Illuminate\Http\Request;
 //use Request;
@@ -29,7 +29,7 @@ class ArticlesController extends Controller {
                 return view ('articles.create');
         }
 
-	public function store(CreateArticleRequest $request) {
+	public function store(ArticleRequest $request) {
 
 	    // validation
 
@@ -46,7 +46,7 @@ class ArticlesController extends Controller {
 
         }
 
-	public function update($id, Request $request) {
+	public function update($id, ArticleRequest $request) {
 
                 $article = NewArticle::findOrFail($id);
 		$article->update($request->all());
