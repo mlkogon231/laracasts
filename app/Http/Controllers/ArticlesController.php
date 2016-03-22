@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 use App\Http\Requests\CreateArticleRequest;
 use Illumniate\HttpResponse;
-//use Illuminate\Http\Request;
+use Illuminate\Http\Request;
 //use Request;
 
 class ArticlesController extends Controller {
@@ -35,6 +35,23 @@ class ArticlesController extends Controller {
 
 		NewArticle::create($request->all());
 		return   redirect('articles');
+
+        }
+
+	public function edit($id) {
+
+		$article = NewArticle::findOrFail($id);
+		return view('articles.edit', compact('article'));
+
+
+        }
+
+	public function update($id, Request $request) {
+
+                $article = NewArticle::findOrFail($id);
+		$article->update($request->all());
+                return redirect('articles');
+
 
         }
 
