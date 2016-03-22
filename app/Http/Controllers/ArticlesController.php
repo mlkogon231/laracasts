@@ -7,13 +7,19 @@ use Carbon\Carbon;
 use App\Http\Requests\ArticleRequest;
 use Illumniate\HttpResponse;
 use Illuminate\Http\Request;
+use Auth;
 //use Request;
 
 class ArticlesController extends Controller {
 
+	public function __construct(){
+		$this->middleware('auth', ['except' => 'index']);
+	}
+
 	public function index() {
 
 //	return \Auth::user()->name;
+//return \Auth::user();
 // query scope on next line
 		$articles = NewArticle::latest('published_at')->published()->get();
 //		$articles = NewArticle::latest('published_at')->where('published_at', '<=', Carbon::now())->get();
@@ -35,7 +41,11 @@ class ArticlesController extends Controller {
 
 	    // validation
 
-		NewArticle::create($request->all());
+  		$article = new NewArticle($request->all());
+		Auth::user()->articles()->save($article);
+//		Auth::user()->articles()->save(new NewArticle($request->all()));
+
+//		NewArticle::create($request->all());
 		return   redirect('articles');
 
         }
