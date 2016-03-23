@@ -3,6 +3,7 @@
 use App\NewArticle;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers;
 use Carbon\Carbon;
 use App\Http\Requests\ArticleRequest;
 use Illumniate\HttpResponse;
@@ -43,21 +44,28 @@ class ArticlesController extends Controller {
 
 	public function store(ArticleRequest $request) {
 
+		Auth::user()->articles()->create($request->all());
+		flash('You are now logged in');
+		//flash()->overlay('Your article has been created', 'Yay');
+		return redirect('articles')->with('flash_message');
+
+
 
 //  		$article = new NewArticle($request->all());
 
 //		Auth::user()->articles()->save($article);
-		Auth::user()->articles()->create($request->all());
 
-		session()->flash('flash_message', 'Your article has been created');
-		session()->flash('flash_message_important', true);
+//		session()->flash('flash_message', 'Your article has been created');
+//		session()->flash('flash_message_important', true);
 
 //	\Session::flash('flash_message', 'Your article has been created');
 
 //		Auth::user()->articles()->save(new NewArticle($request->all()));
 
-
-		return   redirect('articles');
+//		return redirect('articles')->with([
+//			'flash_message' => 'Your article has been created',
+//			'flash_message_important' => true
+//		]);
 
         }
 
