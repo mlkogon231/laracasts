@@ -13,7 +13,7 @@ use Auth;
 class ArticlesController extends Controller {
 
 	public function __construct(){
-		$this->middleware('auth', ['except' => 'index']);
+		$this->middleware('auth', ['except' => 'index', 'show']);
 	}
 
 	public function index() {
@@ -27,10 +27,14 @@ class ArticlesController extends Controller {
 		return view('articles.index', compact('articles'));
 	}
 
-	public function show($id) {
-//dd('you are in show');
-		$article = NewArticle::findOrFail($id);
+// show a single article
+// param Article $article
+// return Response
+
+	public function show(NewArticle $article) {
+
 		return view ('articles.show', compact('article'));
+
 	}
 
         public function create() {
@@ -50,17 +54,15 @@ class ArticlesController extends Controller {
 
         }
 
-	public function edit($id) {
+	public function edit(NewArticle $article) {
 
-		$article = NewArticle::findOrFail($id);
 		return view('articles.edit', compact('article'));
 
 
         }
 
-	public function update($id, ArticleRequest $request) {
+	public function update(NewArticle $article, ArticleRequest $request) {
 
-                $article = NewArticle::findOrFail($id);
 		$article->update($request->all());
                 return redirect('articles');
 
