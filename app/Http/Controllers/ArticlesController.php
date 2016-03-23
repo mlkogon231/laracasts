@@ -43,13 +43,17 @@ class ArticlesController extends Controller {
 
 	public function store(ArticleRequest $request) {
 
-	    // validation
 
-  		$article = new NewArticle($request->all());
-		Auth::user()->articles()->save($article);
+//  		$article = new NewArticle($request->all());
+
+//		Auth::user()->articles()->save($article);
+		Auth::user()->articles()->create($request->all());
+
+	\Session::flash('flash_message', 'Your article has been created');
+
 //		Auth::user()->articles()->save(new NewArticle($request->all()));
 
-//		NewArticle::create($request->all());
+
 		return   redirect('articles');
 
         }

@@ -4,6 +4,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\Registrar;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+// this is the only change in this file from episode 18, I added the line below
+use App\Http\Controllers\Auth;
 
 class AuthController extends Controller {
 
