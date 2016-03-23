@@ -49,7 +49,10 @@ class ArticlesController extends Controller {
 //		Auth::user()->articles()->save($article);
 		Auth::user()->articles()->create($request->all());
 
-	\Session::flash('flash_message', 'Your article has been created');
+		session()->flash('flash_message', 'Your article has been created');
+		session()->flash('flash_message_important', true);
+
+//	\Session::flash('flash_message', 'Your article has been created');
 
 //		Auth::user()->articles()->save(new NewArticle($request->all()));
 

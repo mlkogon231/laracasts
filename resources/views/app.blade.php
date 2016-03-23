@@ -4,11 +4,12 @@
 <div class = "test">
 
 @if(Session::has('flash_message'))
-	<div class = "alert alert-success">
+	<div class = "alert alert-success" {{ Session::has('flash_message_important') ? 'alert-important' : '' }}>
+	@if (Session::has('flash_message_important'))
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times</button>
+	@endif
 
-	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times</button>
-		{{ Session::get('flash_message') }}
-
+		{{ session('flash_message')  }}
 	</div>
 @endif
 
@@ -18,6 +19,10 @@
 
 <script src="//code.jquery.com/jquery-2.2.1.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<script>
+  $('div.alert').not('.alert-important').delay(3000).slideUp(300);
+</script>
 
 @yield('footer')
 </html>
