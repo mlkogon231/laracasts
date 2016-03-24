@@ -44,39 +44,14 @@ class ArticlesController extends Controller {
         }
 
 	public function store(ArticleRequest $request) {
-//dd($request->input('tags'));
-//		Auth::user()->articles()->create($request->all());
+
 		$article = Auth::user()->articles()->create($request->all());
 
-	//	$article = Auth::user()->articles()->create($request->all());
-	//	$article->tags()->attach($request->input('tags'));
-
-//	$tagIds = $request->input('tags');
-//	$article->tags()->attach([$tagIds); 
-
-	$article->tags()->attach($request->input('tag_list'));
+		$article->tags()->attach($request->input('tag_list'));
 
 		flash('You are now logged in');
-		//flash()->overlay('Your article has been created', 'Yay');
+
 		return redirect('articles')->with('flash_message');
-
-
-
-//  		$article = new NewArticle($request->all());
-
-//		Auth::user()->articles()->save($article);
-
-//		session()->flash('flash_message', 'Your article has been created');
-//		session()->flash('flash_message_important', true);
-
-//	\Session::flash('flash_message', 'Your article has been created');
-
-//		Auth::user()->articles()->save(new NewArticle($request->all()));
-
-//		return redirect('articles')->with([
-//			'flash_message' => 'Your article has been created',
-//			'flash_message_important' => true
-//		]);
 
         }
 
@@ -91,6 +66,7 @@ class ArticlesController extends Controller {
 	public function update(NewArticle $article, ArticleRequest $request) {
 
 		$article->update($request->all());
+		$article->tags()->sync($request->input('tag_list'));
                 return redirect('articles');
 
 
