@@ -1,6 +1,7 @@
 <html>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-beta.3/css/select2.min.css" />
 <div class = "container">
 
 
@@ -10,7 +11,6 @@
 </div>
 
 
-<script src="//code.jquery.com/jquery-2.2.1.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 <script>
@@ -18,5 +18,7 @@ $('#flash-overlay-modal').modal();
 //  $('div.alert').not('.alert-important').delay(3000).slideUp(300);
 </script>
 
+<script src"http://code.jquery.com/jquery.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-beta.3/js/select2.min.js"></script>	
 @yield('footer')
 </html>
