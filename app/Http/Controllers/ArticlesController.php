@@ -75,7 +75,7 @@ class ArticlesController extends Controller {
 
         }
 
-	private function syncTags(Article $article, array $tags){
+	private function syncTags(NewArticle $article, array $tags){
 
 		$article->tags()->sync($tags);
 
