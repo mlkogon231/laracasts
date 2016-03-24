@@ -30,8 +30,7 @@
 
 <script>
   $('#tag_list').select2({
-	placeholder: 'Click this bar to choose a tag',
-	tags: true
+	placeholder: 'Click this bar to choose a tag'
   });
 </script>
 
