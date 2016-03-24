@@ -29,7 +29,10 @@
 @section('footer')
 
 <script>
-  $('#tag_list').select2();
+  $('#tag_list').select2({
+	placeholder: 'Click this bar to choose a tag',
+	tags: true
+  });
 </script>
 
 @endsection
