@@ -38,4 +38,11 @@ class NewArticle extends Model {
 		return $this->belongsTo('App\User');
 	}
 
+	public function tags () {
+		return $this->belongsToMany('App\Tag')->withTimestamps();
+	}
+// get a list of tag ids associated with the current article returns an array
+	public function getTagListAttribute() {
+		return $this->tags->lists('id');
+	}
 }

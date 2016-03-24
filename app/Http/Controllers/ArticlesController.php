@@ -39,12 +39,23 @@ class ArticlesController extends Controller {
 	}
 
         public function create() {
-                return view ('articles.create');
+		$tags = \App\Tag::lists('name', 'id');
+                return view ('articles.create', compact('tags'));
         }
 
 	public function store(ArticleRequest $request) {
+//dd($request->input('tags'));
+//		Auth::user()->articles()->create($request->all());
+		$article = Auth::user()->articles()->create($request->all());
 
-		Auth::user()->articles()->create($request->all());
+	//	$article = Auth::user()->articles()->create($request->all());
+	//	$article->tags()->attach($request->input('tags'));
+
+//	$tagIds = $request->input('tags');
+//	$article->tags()->attach([$tagIds); 
+
+	$article->tags()->attach($request->input('tag_list'));
+
 		flash('You are now logged in');
 		//flash()->overlay('Your article has been created', 'Yay');
 		return redirect('articles')->with('flash_message');
@@ -70,8 +81,9 @@ class ArticlesController extends Controller {
         }
 
 	public function edit(NewArticle $article) {
+		$tags = \App\Tag::lists('name', 'id');
 
-		return view('articles.edit', compact('article'));
+		return view('articles.edit', compact('article', 'tags'));
 
 
         }
