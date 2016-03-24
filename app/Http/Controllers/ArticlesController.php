@@ -45,9 +45,10 @@ class ArticlesController extends Controller {
 
 	public function store(ArticleRequest $request) {
 
-		$article = Auth::user()->articles()->create($request->all());
+//		$article = Auth::user()->articles()->create($request->all());
+//		$article->tags()->attach($request->input('tag_list'));
 
-		$article->tags()->attach($request->input('tag_list'));
+		$this->createArticle($request);
 
 		flash('You are now logged in');
 
@@ -66,11 +67,25 @@ class ArticlesController extends Controller {
 	public function update(NewArticle $article, ArticleRequest $request) {
 
 		$article->update($request->all());
-		$article->tags()->sync($request->input('tag_list'));
+//		$article->tags()->sync($request->input('tag_list'));
+		$this->syncTags($article, $request->input('tag_list'));
+
                 return redirect('articles');
 
 
         }
 
+	private function syncTags(Article $article, array $tags){
 
+		$article->tags()->sync($tags);
+
+	}
+
+	private function createArticle(ArticleRequest $request){
+
+		$this->createArticle($request);
+		$this->syncTags($article, $request->input('tag_list'));
+		return $article;
+
+	}
 }
