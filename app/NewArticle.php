@@ -28,7 +28,7 @@ class NewArticle extends Model {
 
 	public function getPublishedAtAttribute($date) {
 
-		return new Carbon($date);
+		return Carbon::parse($date)->format('Y-m-d');
 
 	}
 
