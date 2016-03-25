@@ -1,5 +1,15 @@
 <?php
 
+interface BarInterface {}
+
+class Bar implements BarInterface {}
+
+App::bind('BarInterface', 'Bar');
+
+Route::get('bar', function(BarInterface $bar) {
+	$bar = App::make('BarInterface');
+dd($bar);
+});
 
 Route::get('about', 'PagesController@about');
 Route::get('contact', 'PagesController@contact');
