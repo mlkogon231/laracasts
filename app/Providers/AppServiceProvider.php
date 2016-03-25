@@ -1,7 +1,7 @@
 <?php namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-
+use App\NewArticle;
 class AppServiceProvider extends ServiceProvider {
 
 	/**
@@ -11,7 +11,10 @@ class AppServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		//
+		view()->composer('partials.nav', function($view)
+		{
+			$view->with('latest', NewArticle::latest()->first());
+		});
 	}
 
 	/**
@@ -29,6 +32,8 @@ class AppServiceProvider extends ServiceProvider {
 			'Illuminate\Contracts\Auth\Registrar',
 			'App\Services\Registrar'
 		);
+
+
 	}
 
 }
